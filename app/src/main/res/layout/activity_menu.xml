@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/recordPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신상정보기록"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="222dp" />
+
+    <Button
+        android:id="@+id/report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신고하기"
+        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteY="226dp" />
+
+    <Button
+        android:id="@+id/badPaPaz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="배드파파즈"
+        tools:layout_editor_absoluteX="74dp"
+        tools:layout_editor_absoluteY="408dp" />
+
+    <Button
+        android:id="@+id/fnq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FNQ"
+        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteY="408dp" />
+</android.support.constraint.ConstraintLayout>

@@ -56,8 +56,8 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
 
             // TODO : Make post comment Raw Transaction (Live code)
             // make unsigned tx by Web3j TransactionEncoder
-//            RawTransaction tx = createPostTransaction(nonce);
-//            byte[] unsignedTx = TransactionEncoder.encode(tx);
+            RawTransaction tx = createPostTransaction(nonce);
+            byte[] unsignedTx = TransactionEncoder.encode(tx);
             signTransaction(unsignedTx, (success, message) -> {
                 if (success) {
                     contract.toastMessage("Success to post your comment");
@@ -81,7 +81,7 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
         // TODO : Make Web3j Function to call Post Smart contract call (Live code)
         // Encode function to HEX String
 
-        /*
+        //여기서 첫 인자 name은 넣을 스마트컨트랙트 함수 이름
         Function func = new Function("post"
                 , Arrays.asList(
                 new Utf8String(feed.getName())
@@ -91,6 +91,8 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
                 , Collections.emptyList());
 
         String data = FunctionEncoder.encode(func);
+        Log.d("Example Code", "encoded func : "+ data);
+        // 해시값이 나오게 된다.
 
         return RawTransaction.createTransaction(
                 nonce
@@ -98,7 +100,7 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
                 , BigInteger.valueOf(1_000_000L)
                 , FunctionUtil.CONTRACT_ADDRESS
                 , data);
-         */
+
     }
 
     private BigInteger getNonce() {
@@ -120,7 +122,19 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
         // Success, Send Eth Transaction > sendSignedTransaction(signedTransaction) and Update listener
         // fail, update listener
         // Update Listener call > listener.transactionDidFinish(result, "");
+        String hdPath = ScwService.getHdPath(ScwCoinType.ETH,0);
+        ScwService.getInstance().signEthTransaction(new ScwService.ScwSignEthTransactionCallback() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                listener.transactionDidFinish(true,"");
+                sendSignedTransaction(bytes);
+            }
 
+            @Override
+            public void onFailure(int i, @Nullable String s) {
+                listener.transactionDidFinish(false,"");
+            }
+        },unsignedTx,hdPath);
     }
 
     private boolean sendSignedTransaction(byte[] bytes) {

@@ -1,5 +1,7 @@
 package com.android.samsung.codelab.guestbookdapp.remote;
 
+import android.util.Log;
+
 import com.android.samsung.codelab.guestbookdapp.ethereum.FunctionUtil;
 import com.android.samsung.codelab.guestbookdapp.model.Feed;
 import com.android.samsung.codelab.guestbookdapp.util.AppExecutors;
@@ -69,8 +71,20 @@ public class FeedLoader {
         // Make Eth Call Transaction
         // send ETH Call
 
-        /*
+        //스마트컨트랙트 콜을 받음
         Function functionGetPost = FunctionUtil.createGetPostSmartContractCall(index);
+        /*Function functionGetPost = new Function("getPost"
+                ,singletonList(new Uint(BigInteger.valueOf(index)))
+                , Arrays.asList(
+                new TypeReference<Utf8String>() {
+                }
+                ,new TypeReference<Utf8String>() {
+                }
+                ,new TypeReference<Utf8String>() {
+                }
+                ,new TypeReference<Utf8String>(){
+                }
+        ));*/
         String data = FunctionEncoder.encode(functionGetPost);
         Transaction tx = Transaction.createEthCallTransaction(address, FunctionUtil.CONTRACT_ADDRESS, data);
 
@@ -78,16 +92,18 @@ public class FeedLoader {
         if (result.hasError()) {
             throw new Exception("Get Post eth call error" + result.getError().getMessage());
         }
-         */
 
+        //여기서 받은 outputParameter를 decode해서 스트링으로 받고, 피드에 업로드
         String value = result.getValue();
         List<TypeReference<Type>> outputParameters = functionGetPost.getOutputParameters();
         List<Type> types = FunctionReturnDecoder.decode(value, outputParameters);
+        //로그 받고싶으면 이거 쓰자.
+        Log.d("Example Code","Value ? : "+ types.get(0).getValue());
         return new Feed(
-                (String) types.get(3).getValue()
-                , (String) types.get(0).getValue()
-                , (String) types.get(1).getValue()
-                , (String) types.get(2).getValue()
+                (String) types.get(3).getValue() //emoji
+                , (String) types.get(0).getValue() // name
+                , (String) types.get(1).getValue() // comment
+                , (String) types.get(2).getValue() // date
         );
 
     }

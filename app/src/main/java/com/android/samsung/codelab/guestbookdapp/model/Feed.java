@@ -3,8 +3,6 @@ package com.android.samsung.codelab.guestbookdapp.model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.android.samsung.codelab.guestbookdapp.BR;
-
 public class Feed extends BaseObservable {
 
     private String emoji, name, comment, date;
@@ -21,10 +19,7 @@ public class Feed extends BaseObservable {
         return emoji;
     }
 
-    public void setEmoji(String emoji) {
-        this.emoji = emoji;
-        notifyPropertyChanged(BR.emoji);
-    }
+
 
     @Bindable
     public String getName() {
@@ -40,10 +35,7 @@ public class Feed extends BaseObservable {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-        notifyPropertyChanged(BR.comment);
-    }
+
 
     @Bindable
     public String getDate() {

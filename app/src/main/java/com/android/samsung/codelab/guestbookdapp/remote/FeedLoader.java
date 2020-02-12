@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.android.samsung.codelab.guestbookdapp.ethereum.FunctionUtil;
 import com.android.samsung.codelab.guestbookdapp.model.Feed;
-import com.android.samsung.codelab.guestbookdapp.util.AppExecutors;
 
 import org.web3j.abi.FunctionEncoder;
 import org.web3j.abi.FunctionReturnDecoder;
@@ -14,8 +13,6 @@ import org.web3j.abi.datatypes.Type;
 import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.EthCall;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FeedLoader {
@@ -25,16 +22,16 @@ public class FeedLoader {
         this.address = address;
     }
 
-    public void loadFeeds(int numOfFeed, Listener listener) {
+   /* public void loadFeeds(int numOfFeed, Listener listener) {
         AppExecutors.getInstance().networkIO().execute(() -> {
             try {
-                int postCount = getPostCount();
-                int lastIndex = postCount - 1 - numOfFeed;
+               // int postCount = getPostCount();
+              //  int lastIndex = postCount - 1 - numOfFeed;
                 if (lastIndex < 0)
                     lastIndex = 0;
 
                 ArrayList<Feed> feedList = new ArrayList<>();
-                for (int index = postCount - 1; index >= lastIndex; index--) {
+              /  for (int index = postCount - 1; index >= lastIndex; index--) {
                     feedList.add(getPost(index));
                 }
                 listener.feedDidLoaded(true, feedList, "Success");
@@ -45,7 +42,7 @@ public class FeedLoader {
 
     }
 
-    private int getPostCount() throws Exception {
+   /* private int getPostCount() throws Exception {
         Function functionGetPostCount = FunctionUtil.createGetPostCountSmartContractCall();
         String data = FunctionEncoder.encode(functionGetPostCount);
         Transaction tx = Transaction.createEthCallTransaction(address, FunctionUtil.CONTRACT_ADDRESS, data);
@@ -63,6 +60,7 @@ public class FeedLoader {
 
         return postCount.intValue();
     }
+*/
 
     private Feed getPost(int index) throws Exception {
 
@@ -72,7 +70,7 @@ public class FeedLoader {
         // send ETH Call
 
         //스마트컨트랙트 콜을 받음
-        Function functionGetPost = FunctionUtil.createGetPostSmartContractCall(index);
+        Function functionGetPost = FunctionUtil.createGetReportSmartContractCall(index);
         /*Function functionGetPost = new Function("getPost"
                 ,singletonList(new Uint(BigInteger.valueOf(index)))
                 , Arrays.asList(

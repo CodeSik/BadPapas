@@ -3,17 +3,17 @@ package com.android.samsung.codelab.guestbookdapp.model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import com.android.samsung.codelab.guestbookdapp.BR;
+
 
 public class UserInfo extends BaseObservable {
 
     private String seedHash;
     private String address;
     private String balance;
-    private Feed feedToWrite;
+    private Report reportToWrite;
 
     public UserInfo() {
-        feedToWrite = new Feed("\uD83D\uDE00", "", "", "");
+        reportToWrite = new Report("", "", "", "","");
     }
 
     public static UserInfo getInstance() {
@@ -41,13 +41,10 @@ public class UserInfo extends BaseObservable {
         return balance;
     }
 
-    public void setBalance(String balance) {
-        this.balance = balance;
-        notifyPropertyChanged(BR.balance);
-    }
 
-    public Feed getFeedToWrite() {
-        return feedToWrite;
+
+    public Report getReportToWrite() {
+        return reportToWrite;
     }
 
     private static class LazyHolder {

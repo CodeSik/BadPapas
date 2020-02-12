@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.android.samsung.codelab.guestbookdapp.contract.WriteFeedContract;
 import com.android.samsung.codelab.guestbookdapp.ethereum.FunctionUtil;
-import com.android.samsung.codelab.guestbookdapp.model.Feed;
+import com.android.samsung.codelab.guestbookdapp.model.Report;
 import com.android.samsung.codelab.guestbookdapp.model.UserInfo;
 import com.android.samsung.codelab.guestbookdapp.remote.RemoteManager;
 import com.android.samsung.codelab.guestbookdapp.util.AppExecutors;
@@ -26,28 +26,32 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
-public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
+public class WriteReportPresenter implements WriteFeedContract.PresenterContract {
 
-    private static final String TAG = WriteFeedPresenter.class.getSimpleName();
+    private static final String TAG = WriteReportPresenter.class.getSimpleName();
     private WriteFeedContract.ViewContract contract;
 
-    public WriteFeedPresenter(WriteFeedContract.ViewContract contract) {
+    public WriteReportPresenter(WriteFeedContract.ViewContract contract) {
         this.contract = contract;
     }
 
     @Override
     public void actionSend() {
-        Feed feed = UserInfo.getInstance().getFeedToWrite();
-        if (TextUtils.isEmpty(feed.getComment())
-                || TextUtils.isEmpty(feed.getName())
-                || TextUtils.isEmpty(feed.getEmoji())) {
+        Report report = UserInfo.getInstance().getReportToWrite();
+        if (TextUtils.isEmpty(report.getName())
+                || TextUtils.isEmpty(report.getSex())
+                || TextUtils.isEmpty(report.getDate())
+                || TextUtils.isEmpty(report.getFeature())
+                || TextUtils.isEmpty(report.getCompany())) {
             contract.toastMessage("Please fill in all fields.");
             return;
         }
         contract.setLoadingProgress(true);
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss", Locale.US);
+
+        //날짜 설정
         String date = dateFormat.format(System.currentTimeMillis());
-        UserInfo.getInstance().getFeedToWrite().setDate(date);
+        UserInfo.getInstance().getReportToWrite().setDate(date);
 
         AppExecutors.getInstance().networkIO().execute(() -> {
 
@@ -56,7 +60,7 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
 
             // TODO : Make post comment Raw Transaction (Live code)
             // make unsigned tx by Web3j TransactionEncoder
-            RawTransaction tx = createPostTransaction(nonce);
+            RawTransaction tx = createReportTransaction(nonce);
             byte[] unsignedTx = TransactionEncoder.encode(tx);
             signTransaction(unsignedTx, (success, message) -> {
                 if (success) {
@@ -72,22 +76,20 @@ public class WriteFeedPresenter implements WriteFeedContract.PresenterContract {
 
     }
 
-    public void changeEmoji() {
-        contract.setEmojiBottomSheet();
-    }
 
-    private RawTransaction createPostTransaction(BigInteger nonce) {
-        Feed feed = UserInfo.getInstance().getFeedToWrite();
+    private RawTransaction createReportTransaction(BigInteger nonce) {
+        Report report = UserInfo.getInstance().getReportToWrite();
         // TODO : Make Web3j Function to call Post Smart contract call (Live code)
         // Encode function to HEX String
 
         //여기서 첫 인자 name은 넣을 스마트컨트랙트 함수 이름
-        Function func = new Function("post"
+        Function func = new Function("report"
                 , Arrays.asList(
-                new Utf8String(feed.getName())
-                , new Utf8String(feed.getComment())
-                , new Utf8String(feed.getDate())
-                , new Utf8String(feed.getEmoji()))
+                new Utf8String(report.getName())
+                , new Utf8String(report.getSex())
+                , new Utf8String(report.getDate())
+                , new Utf8String(report.getCompany())
+                , new Utf8String(report.getFeature()))
                 , Collections.emptyList());
 
         String data = FunctionEncoder.encode(func);

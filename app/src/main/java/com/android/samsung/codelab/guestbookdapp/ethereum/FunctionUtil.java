@@ -13,27 +13,31 @@ import static java.util.Collections.singletonList;
 
 public class FunctionUtil {
     //TODO : 여기서 스마트컨트랙트 주소 바꿀 수 있떠
-    public static final String CONTRACT_ADDRESS = "0x84777eebB409E6F3eDe402B4c2A70f3C9B89B8Ea";
+    public static final String CONTRACT_ADDRESS = "0xc6d3d14a1725967b9e0a0e62b9a6635fc1d4dd45";
 
-    public static Function createPostSmartContractCall(String name, String comment, String date, String emoji) {
-        return new Function("post"
+
+    //TODO : 스마트컨트랙트에 트랜잭션 보내는 것.
+    public static Function createReportSmartContractCall(String name, String date, String sex, String company, String feature, String privateKey) {
+        return new Function("report"
                 , Arrays.asList(
                 new Utf8String(name)
-                , new Utf8String(comment)
                 , new Utf8String(date)
-                , new Utf8String(emoji))
+                , new Utf8String(sex)
+                , new Utf8String(company)
+                , new Utf8String(feature))
                 , Collections.emptyList());
     }
-
+/*
     public static Function createGetPostCountSmartContractCall() {
-        return new Function("getPostCount"
+        return new Function("etReports"
                 , Collections.emptyList()
                 , singletonList(new TypeReference<Uint>() {
         }));
     }
-
-    public static Function createGetPostSmartContractCall(int index) {
-        return new Function("getPost"
+*/
+    //TODO:스마트컨트랙트에서 데이터 받아오는 것
+    public static Function createGetReportSmartContractCall(int index) {
+        return new Function("getReports"
                 , singletonList(new Uint(BigInteger.valueOf(index)))
                 , Arrays.asList(
                 new TypeReference<Utf8String>() {
@@ -44,6 +48,9 @@ public class FunctionUtil {
                 }
                 , new TypeReference<Utf8String>() {
                 }
+                , new TypeReference<Utf8String>() {
+                }
+
         ));
     }
 }

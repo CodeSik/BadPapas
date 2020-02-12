@@ -1,20 +1,22 @@
 pragma solidity ^0.5.10;
 
-contract Comments {
-    struct Post {
+contract Reports {
+    struct Report {
         string name;
-        string comment;
         string date;
-        string emoji;
-        bool show;
+        string sex;
+        string company;
+        string tall;
+        string weight;
+        string etc;
     }
-    Post[] public posts;
+    Report[] public reports;
     
-    function getPostCount() public view returns(uint) {
-        return posts.length;
+    function getReportCount() public view returns(uint) {
+        return reports.length;
     }
     
-    function post(string memory _name, string memory _comment, string memory _date, string memory _emoji) public {
+    function report(string memory _name, string memory _date, string memory _sex, string memory _emoji) public {
         posts.length++;
         posts[posts.length-1].name = _name;
         posts[posts.length-1].comment = _comment;
@@ -22,7 +24,7 @@ contract Comments {
         posts[posts.length-1].emoji = _emoji;
         posts[posts.length-1].show = true;
     }
-    
+
     function hidePost(uint index) public {
         posts[index].show = false;
     }

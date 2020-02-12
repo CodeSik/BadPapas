@@ -5,7 +5,7 @@ import android.databinding.ObservableArrayList;
 import com.android.samsung.codelab.guestbookdapp.model.Feed;
 import com.android.samsung.codelab.guestbookdapp.remote.FeedLoader;
 
-public interface TimelineContract {
+interface imelineContract {
 
     interface View {
         void setLoading(boolean isLoading);

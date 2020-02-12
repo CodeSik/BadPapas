@@ -110,7 +110,7 @@ public class TimelineActivity extends AppCompatActivity implements TimelineContr
             ProgressBar bar = findViewById(R.id.progress_bar);
             bar.setVisibility(isLoading ? View.VISIBLE : View.INVISIBLE);
         });
-    }
+}
 
     @Override
     public void toast(String message) {

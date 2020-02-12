@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements IntroContract.Vie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.intro);
         setLoading(false);
 
         IntroPresenter presenter = new IntroPresenter(this);
@@ -105,7 +105,21 @@ public class MainActivity extends AppCompatActivity implements IntroContract.Vie
             overridePendingTransition(0, 0);
         }
         finish();
-    }
+    }/*
+    public void showintroActivity(boolean animated) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setClass(getApplicationContext(), intro.class);
+        int flag = Intent.FLAG_ACTIVITY_CLEAR_TASK;
+        if (!animated) {
+            flag |= Intent.FLAG_ACTIVITY_NO_ANIMATION;
+        }
+        intent.setFlags(flag);
+        startActivity(intent);
+        if (!animated) {
+            overridePendingTransition(0, 0);
+        }
+        finish();
+    }*/
 
 
     private void initEmojiCompat() {

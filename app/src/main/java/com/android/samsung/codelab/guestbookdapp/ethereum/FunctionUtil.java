@@ -12,7 +12,7 @@ import java.util.Collections;
 import static java.util.Collections.singletonList;
 
 public class FunctionUtil {
-
+    //TODO : 여기서 스마트컨트랙트 주소 바꿀 수 있떠
     public static final String CONTRACT_ADDRESS = "0x1425cbbbfb6d3c309c81fc8193e2e38f94c333b7";
 
     public static Function createPostSmartContractCall(String name, String comment, String date, String emoji) {

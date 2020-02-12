@@ -15,16 +15,23 @@ import com.android.samsung.codelab.guestbookdapp.presenter.IntroPresenter;
 import info.hoang8f.widget.FButton;
 
 public class intro extends AppCompatActivity {
+
+    FButton button1;
+    FButton button2;
+    FButton button3;
+    FButton button4;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.intro);
 
         //버튼 객체 생성
-        FButton button1 = (FButton) findViewById(R.id.FButton2);
-        FButton button2 = (FButton) findViewById(R.id.FButton3);
-        FButton button3 = (FButton) findViewById(R.id.FButton4);
-        FButton button4 = (FButton) findViewById(R.id.FButton5);
+        button1 = (FButton) findViewById(R.id.FButton2);
+        button2 = (FButton) findViewById(R.id.FButton3);
+        button3 = (FButton) findViewById(R.id.FButton4);
+        button4 = (FButton) findViewById(R.id.FButton5);
 
 
         //버튼 효과

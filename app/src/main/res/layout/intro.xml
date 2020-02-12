@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/layout_intro"
+        android:layout_width="447dp"
+        android:layout_height="872dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:src="@drawable/intro_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/FButton2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57"
+        fbutton:buttonColor="@color/fbutton_color_concrete"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@color/fbutton_color_asbestos"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/FButton3"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toEndOf="@+id/FButton2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57"
+        fbutton:buttonColor="@color/fbutton_color_concrete"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@color/fbutton_color_asbestos"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/FButton4"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FButton2"
+        app:layout_constraintVertical_bias="0.243"
+        fbutton:buttonColor="@color/fbutton_color_concrete"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@color/fbutton_color_asbestos"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/FButton5"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899"
+        fbutton:buttonColor="@color/fbutton_color_concrete"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@color/fbutton_color_asbestos"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp" />
+</android.support.constraint.ConstraintLayout>

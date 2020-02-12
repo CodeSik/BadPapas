@@ -23,6 +23,8 @@ import com.android.samsung.codelab.guestbookdapp.databinding.ActivityMainBinding
 import com.android.samsung.codelab.guestbookdapp.presenter.IntroPresenter;
 import com.android.samsung.codelab.guestbookdapp.util.PrefsHelper;
 
+import jnr.ffi.util.BufferUtil;
+
 public class MainActivity extends AppCompatActivity implements IntroContract.View {
 
     private static final boolean USE_BUNDLED_EMOJI = false;

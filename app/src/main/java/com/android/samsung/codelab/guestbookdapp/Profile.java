@@ -73,7 +73,7 @@ public class Profile extends AppCompatActivity {
                     }
                 }
         );
-
+        //TODO: 여기에는 트랜잭션 전송하는 버튼
         confirmB.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){

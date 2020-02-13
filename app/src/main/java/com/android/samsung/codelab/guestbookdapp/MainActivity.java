@@ -16,18 +16,6 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final Handler handler = new Handler();
-        handler.postDelayed((new Runnable() {
-            @Override
-            public void run(){
-                Intent intent = new Intent(getApplicationContext(), intro.class);
-                startActivity(intent);
-                finish();
-            }
-
-        }), 4000);
-
     }
 
 

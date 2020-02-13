@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation 'info.hoang8f:fbutton:1.0.5'
+
     repositories {
         flatDir {
             dirs 'aar'

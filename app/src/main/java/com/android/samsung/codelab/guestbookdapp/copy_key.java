@@ -3,7 +3,6 @@ package com.android.samsung.codelab.guestbookdapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import info.hoang8f.widget.FButton;
 
 public class copy_key extends AppCompatActivity {
     @Override

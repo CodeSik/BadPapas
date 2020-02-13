@@ -52,7 +52,7 @@
                 android:id="@+id/nameBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="2"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"
@@ -90,34 +90,27 @@
                 android:id="@+id/birthBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.857"
+                android:layout_marginStart="12dp"
+                android:layout_weight="2"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"
                 android:text="생년월일*"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/yearSpin"
+            <EditText
+                android:id="@+id/birthText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_weight="1"
-                android:spinnerMode="dropdown" />
-
-            <Spinner
-                android:id="@+id/monthSpin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown" />
-
-            <Spinner
-                android:id="@+id/daySpin"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown" />
+                android:background="#F7F7F7"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:singleLine="false"
+                android:text="생년월일을 입력하세요"
+                android:textColor="#4D000000"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -135,8 +128,8 @@
                 android:id="@+id/genBox"
                 android:layout_width="17dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.77"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"
                 android:text="성별*"
@@ -147,11 +140,12 @@
                 android:id="@+id/rGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rB1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal|left|center_vertical"
@@ -160,7 +154,7 @@
                     android:text="남자" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/rB2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal|left|center_vertical"
@@ -183,9 +177,9 @@
 
             <TextView
                 android:id="@+id/picBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:gravity="left|center_vertical"
                 android:text="사진*"
@@ -221,7 +215,7 @@
                 android:id="@+id/jobBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="2"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"
@@ -260,7 +254,7 @@
                 android:id="@+id/bodyBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="2"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"
@@ -299,7 +293,7 @@
                 android:id="@+id/etcBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="12dp"
                 android:layout_weight="2"
                 android:background="@drawable/border"
                 android:gravity="left|center_vertical"

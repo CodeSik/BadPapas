@@ -74,6 +74,7 @@ public class Profile extends AppCompatActivity {
                 }
         );
 
+
         confirmB.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){

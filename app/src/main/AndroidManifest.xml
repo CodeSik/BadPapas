@@ -15,18 +15,21 @@
         android:theme= "@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".intro"></activity>
+        <activity android:name=".Information"></activity>
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".copy_key"></activity>
 
-    <!--<activity
-        android:name=".WriteFeedActivity"
-        android:label="Write a comment"
-        android:parentActivityName=".TimelineActivity" />-->
+        <!--<activity
+            android:name=".WriteFeedActivity"
+            android:label="Write a comment"
+            android:parentActivityName=".TimelineActivity" />-->
     </application>
 
 </manifest>

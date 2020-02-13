@@ -61,7 +61,6 @@ public class intro extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         backKeyClickHandler.onBackPressed();
     }
 

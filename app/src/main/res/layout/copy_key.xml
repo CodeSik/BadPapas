@@ -51,7 +51,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     //해시키는 보아라
-
     <TextView
         android:id="@+id/show_hash"
         android:layout_width="177dp"

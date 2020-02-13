@@ -49,7 +49,7 @@
         app:layout_constraintStart_toEndOf="@+id/btn_1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.57"
-         />
+        />
 
     <ImageButton
         android:id="@+id/btn_3"
@@ -82,5 +82,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.899"
-      />
+        />
 </android.support.constraint.ConstraintLayout>

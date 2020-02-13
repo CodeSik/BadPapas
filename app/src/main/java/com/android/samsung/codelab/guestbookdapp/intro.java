@@ -36,6 +36,15 @@ public class intro extends AppCompatActivity {
                 }
         );
 
+        button2.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent intent = new Intent(getApplicationContext(), copy_key.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+
         button3.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){

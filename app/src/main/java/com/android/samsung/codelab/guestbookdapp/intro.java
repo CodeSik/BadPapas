@@ -57,6 +57,14 @@ public class intro extends AppCompatActivity {
                     }
                 }
         );
+        button4.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 
     @Override

@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 
 public class intro extends AppCompatActivity {
 
+    private BackPressCloseHandler backKeyClickHandler;
+
     ImageButton button1;
     ImageButton button2;
     ImageButton button3;
@@ -26,6 +28,8 @@ public class intro extends AppCompatActivity {
         button2 = findViewById(R.id.btn_2);
         button3 = findViewById(R.id.btn_3);
         button4 = findViewById(R.id.btn_4);
+
+        backKeyClickHandler = new BackPressCloseHandler(this);
 
         button1.setOnClickListener(
                 new Button.OnClickListener(){
@@ -53,8 +57,12 @@ public class intro extends AppCompatActivity {
                     }
                 }
         );
-
     }
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backKeyClickHandler.onBackPressed();
+    }
 
 }

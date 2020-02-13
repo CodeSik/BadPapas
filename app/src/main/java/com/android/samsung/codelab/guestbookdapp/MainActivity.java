@@ -16,24 +16,7 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-        Handler hand = new Handler();
 
-        hand.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Intent i = new Intent(MainActivity.this, Test.class);
-                startActivity(i);
-                finish();
-
-            }
-        }, 2000);
-
-
-=======
->>>>>>> e3d76f1b664bd2dc431a76985d845c4f1e2b94af
     }
 
 

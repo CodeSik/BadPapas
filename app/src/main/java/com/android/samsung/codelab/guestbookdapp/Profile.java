@@ -10,8 +10,16 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Profile extends AppCompatActivity {
+
+    TextView nameBox;
+    TextView birthBox;
+    TextView genBox;
+    TextView jobBox;
+    TextView bodyBox;
+    TextView etcBox;
 
     TextView notice;
     String ntcStr;
@@ -19,12 +27,17 @@ public class Profile extends AppCompatActivity {
     Button correctB;
     Button confirmB;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        nameBox = findViewById(R.id.nameBox);
+        birthBox = findViewById(R.id.birthBox);
+        genBox = findViewById(R.id.genBox);
+        jobBox = findViewById(R.id.jobBox);
+        bodyBox = findViewById(R.id.bodyBox);
+        etcBox = findViewById(R.id.etcBox);
 
         correctB = findViewById(R.id.correctB);
         confirmB = findViewById(R.id.confirmB);
@@ -41,6 +54,16 @@ public class Profile extends AppCompatActivity {
         spbStr.setSpan(new ForegroundColorSpan(Color.parseColor("#E91E1E")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         notice.setText(spbStr);
+
+            //정보 가져오기
+            Intent intent = getIntent();
+            nameBox.setText(intent.getExtras().getString("NAME_KEY"));
+            birthBox.setText(intent.getExtras().getString("BIRTH_KEY"));
+            genBox.setText(intent.getExtras().getString("GEN_KEY"));
+            jobBox.setText(intent.getExtras().getString("JOB_KEY"));
+            bodyBox.setText(intent.getExtras().getString("BODY_KEY"));
+            etcBox.setText(intent.getExtras().getString("ETC_KEY"));
+
 
         correctB.setOnClickListener(
                 new Button.OnClickListener(){

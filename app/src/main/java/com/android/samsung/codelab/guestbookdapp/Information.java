@@ -1,29 +1,31 @@
 package com.android.samsung.codelab.guestbookdapp;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Information extends AppCompatActivity {
 
-    Calendar cal = Calendar.getInstance();
+    TextView nameBox;
+    TextView birthBox;
+    TextView genBox;
+    TextView picBox;
+    TextView noticeBox;
 
-    DatePickerDialog.OnDateSetListener myDatePicker = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            cal.set(Calendar.YEAR, year);
-            cal.set(Calendar.MONTH, month);
-            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }
-    };
 
 
     @Override
@@ -31,20 +33,40 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        EditText et_Date = (EditText) findViewById(R.id.birthText);
-        et_Date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(Information.this, myDatePicker, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
+        nameBox = (TextView)findViewById(R.id.nameBox);
+        birthBox = (TextView)findViewById(R.id.birthBox);
+        genBox = (TextView)findViewById(R.id.genBox);
+        picBox = (TextView)findViewById(R.id.picBox);
+        noticeBox = (TextView)findViewById(R.id.noticeBox);
+
+
+        //some word should be painted
+        String Strs[] = new String[5];
+        SpannableString spbStr[] = new SpannableString[5];
+        int start[] = new int[5];
+        int end[] = new int[5];
+
+        Strs[0] = nameBox.getText().toString();
+        Strs[1] = birthBox.getText().toString();
+        Strs[2] = genBox.getText().toString();
+        Strs[3] = picBox.getText().toString();
+        Strs[4] = noticeBox.getText().toString();
+
+        String word = "*";
+        int len = word.length();
+
+        for(int i=0; i<5; i++){
+            spbStr[i] = new SpannableString(Strs[i]);
+            start[i] = Strs[i].indexOf(word);
+            end[i] = start[i] + len;
+            spbStr[i].setSpan(new ForegroundColorSpan(Color.parseColor("#E91E1E")), start[i], end[i], Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
+        nameBox.setText(spbStr[0]);
+        birthBox.setText(spbStr[1]);
+        genBox.setText(spbStr[2]);
+        picBox.setText(spbStr[3]);
+        noticeBox.setText(spbStr[4]);
     }
 
-    private void updateLabel() {
-        String myFormat = "yyyy/MM/dd";    // 출력형식   2018/11/28
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
-
-        EditText et_date = (EditText) findViewById(R.id.birthText);
-        et_date.setText(sdf.format(cal.getTime()));
-    }
 }

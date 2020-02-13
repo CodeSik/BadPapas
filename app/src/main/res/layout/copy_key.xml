@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -67,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="1.0" />
 
-    <info.hoang8f.widget.FButton
+    <Button
         android:id="@+id/copy_btn"
         android:layout_width="67dp"
         android:layout_height="32dp"
@@ -75,14 +74,9 @@
         android:layout_marginEnd="68dp"
         android:layout_marginBottom="276dp"
         android:text="복사하기"
-        android:textColor="@color/fbutton_color_clouds"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/show_hash"
-        fbutton:buttonColor="@color/fbutton_color_midnight_blue"
-        fbutton:cornerRadius="5dp"
-        fbutton:shadowColor="@color/fbutton_color_asbestos"
-        fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp" />
+      />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,158 @@
+package com.android.samsung.codelab.guestbookdapp.presenter;
+
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
+
+import com.android.samsung.codelab.guestbookdapp.contract.WriteFeedContract;
+import com.android.samsung.codelab.guestbookdapp.ethereum.FunctionUtil;
+import com.android.samsung.codelab.guestbookdapp.model.Report;
+import com.android.samsung.codelab.guestbookdapp.model.UserInfo;
+import com.android.samsung.codelab.guestbookdapp.remote.RemoteManager;
+import com.android.samsung.codelab.guestbookdapp.util.AppExecutors;
+import com.samsung.android.sdk.coldwallet.ScwCoinType;
+import com.samsung.android.sdk.coldwallet.ScwService;
+
+import org.web3j.abi.FunctionEncoder;
+import org.web3j.abi.datatypes.Function;
+import org.web3j.abi.datatypes.Utf8String;
+import org.web3j.crypto.RawTransaction;
+import org.web3j.crypto.TransactionEncoder;
+import org.web3j.utils.Numeric;
+
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Locale;
+
+public class WriteReportPresenter implements WriteFeedContract.PresenterContract {
+
+    private static final String TAG = WriteReportPresenter.class.getSimpleName();
+    private WriteFeedContract.ViewContract contract;
+
+    public WriteReportPresenter(WriteFeedContract.ViewContract contract) {
+        this.contract = contract;
+    }
+
+    @Override
+    public void actionSend() {
+        Report report = UserInfo.getInstance().getReportToWrite();
+        if (TextUtils.isEmpty(report.getName())
+                || TextUtils.isEmpty(report.getSex())
+                || TextUtils.isEmpty(report.getDate())
+                || TextUtils.isEmpty(report.getFeature())
+                || TextUtils.isEmpty(report.getCompany())) {
+            contract.toastMessage("Please fill in all fields.");
+            return;
+        }
+        contract.setLoadingProgress(true);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy HH:mm:ss", Locale.US);
+
+        //날짜 설정
+        String date = dateFormat.format(System.currentTimeMillis());
+        UserInfo.getInstance().getReportToWrite().setDate(date);
+
+        AppExecutors.getInstance().networkIO().execute(() -> {
+
+            BigInteger nonce = getNonce();
+
+
+            // TODO : Make post comment Raw Transaction (Live code)
+            // make unsigned tx by Web3j TransactionEncoder
+            RawTransaction tx = createReportTransaction(nonce);
+            byte[] unsignedTx = TransactionEncoder.encode(tx);
+            signTransaction(unsignedTx, (success, message) -> {
+                if (success) {
+                    contract.toastMessage("Success to post your comment");
+                } else {
+                    contract.toastMessage("Fail to post your comment.");
+                }
+                contract.setLoadingProgress(false);
+                contract.finishActivity();
+            });
+
+        });
+
+    }
+
+
+    private RawTransaction createReportTransaction(BigInteger nonce) {
+        Report report = UserInfo.getInstance().getReportToWrite();
+        // TODO : Make Web3j Function to call Post Smart contract call (Live code)
+        // Encode function to HEX String
+
+        //여기서 첫 인자 name은 넣을 스마트컨트랙트 함수 이름
+        Function func = new Function("report"
+                , Arrays.asList(
+                new Utf8String(report.getName())
+                , new Utf8String(report.getSex())
+                , new Utf8String(report.getDate())
+                , new Utf8String(report.getCompany())
+                , new Utf8String(report.getFeature()))
+                , Collections.emptyList());
+
+        String data = FunctionEncoder.encode(func);
+        Log.d("Example Code", "encoded func : "+ data);
+        // 해시값이 나오게 된다.
+
+        return RawTransaction.createTransaction(
+                nonce
+                , BigInteger.valueOf(3_000_000_000L)
+                , BigInteger.valueOf(1_000_000L)
+                , FunctionUtil.CONTRACT_ADDRESS
+                , data);
+
+    }
+
+    private BigInteger getNonce() {
+        String address = UserInfo.getInstance().getAddress();
+        BigInteger nonce;
+        try {
+            nonce = RemoteManager.getInstance().getNonce(address);
+        } catch (Exception e) {
+            nonce = BigInteger.ZERO;
+        }
+
+        return nonce;
+
+    }
+
+    private void signTransaction(byte[] unsignedTx, SignTransactionListener listener) {
+
+        // TODO : Sign the transaction with Samsung blockchain keystore
+        // Success, Send Eth Transaction > sendSignedTransaction(signedTransaction) and Update listener
+        // fail, update listener
+        // Update Listener call > listener.transactionDidFinish(result, "");
+        String hdPath = ScwService.getHdPath(ScwCoinType.ETH,0);
+        ScwService.getInstance().signEthTransaction(new ScwService.ScwSignEthTransactionCallback() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                listener.transactionDidFinish(true,"");
+                sendSignedTransaction(bytes);
+            }
+
+            @Override
+            public void onFailure(int i, @Nullable String s) {
+                listener.transactionDidFinish(false,"");
+            }
+        },unsignedTx,hdPath);
+    }
+
+    private boolean sendSignedTransaction(byte[] bytes) {
+        String hex = Numeric.toHexString(bytes);
+        try {
+            RemoteManager.getInstance().sendRawTransaction(hex);
+            return true;
+        } catch (Exception e) {
+            Log.d(TAG, e.getMessage());
+            return false;
+        }
+
+    }
+
+    interface SignTransactionListener {
+        void transactionDidFinish(boolean success, String message);
+    }
+
+}

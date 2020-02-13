@@ -21,13 +21,12 @@ public class MainActivity extends AppCompatActivity  {
         handler.postDelayed((new Runnable() {
             @Override
             public void run(){
-                Intent intent = new Intent(getApplicationContext(),intro.class);
+                Intent intent = new Intent(getApplicationContext(), intro.class);
                 startActivity(intent);
                 finish();
             }
 
         }), 4000);
-
 
     }
 

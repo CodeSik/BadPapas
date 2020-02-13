@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Report"></activity>
+        <activity android:name=".Upload"></activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -29,6 +29,7 @@
         <activity android:name=".Profile" />
         <activity android:name=".copy_key" />
         <activity android:name=".badguylistActivity" />
+        <activity android:name=".Report" />
     </application>
 
 </manifest>

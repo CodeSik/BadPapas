@@ -55,7 +55,7 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.89" />
+        android:layout_weight="0.94" />
 
     <LinearLayout
         android:id="@+id/iconLay"
@@ -68,9 +68,9 @@
             android:id="@+id/docImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="23dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="23dp"
             android:layout_weight="1"
             android:background="@drawable/icondoc" />
 
@@ -79,9 +79,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="19dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="27dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="25dp"
             android:layout_weight="1"
             android:background="@drawable/iconcheck" />
 
@@ -111,7 +111,7 @@
         android:id="@+id/progImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1.09"
+        android:layout_weight="1.075"
         android:background="@drawable/progress" />
 
     <LinearLayout
@@ -161,7 +161,21 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.89" />
+        android:layout_weight="1.1" />
+
+    <TextView
+        android:id="@+id/confirmBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.1"
+        android:gravity="center"
+        android:text="정보 확인 안 됨"
+        android:textColor="#CA2222" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.85" />
 
     <TextView
         android:id="@+id/notice"
@@ -175,4 +189,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.05" />
+
 </LinearLayout>

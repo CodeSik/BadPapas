@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 public class Information extends AppCompatActivity {
 
-    InputMethodManager imm; //키보드 숨기기
+    InputMethodManager imm;
 
     LinearLayout layer;
 
@@ -125,6 +125,14 @@ public class Information extends AppCompatActivity {
         );
     }
 
+    //뒤로 가기 하면 무조건 Intro 화면 (이전 액티비티로 안 감)
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(getApplicationContext(), intro.class);
+        startActivity(intent);
+    }
+
+    //키보드 숨기기 Listener
     View.OnClickListener myClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v){

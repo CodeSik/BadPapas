@@ -1,46 +1,71 @@
 package com.android.samsung.codelab.guestbookdapp;
 
-import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.Calendar;
-import java.util.Locale;
 
 public class Information extends AppCompatActivity {
+
+    InputMethodManager imm; //키보드 숨기기
+
+    LinearLayout layer;
 
     TextView nameBox;
     TextView birthBox;
     TextView genBox;
     TextView picBox;
     TextView noticeBox;
+
+    EditText nameText;
+    EditText birthText;
+    EditText jobText;
+    EditText bodyText;
+    EditText etcText;
+
+    RadioGroup genGroup;
+    RadioButton checked;
+
     Button saveB;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        layer = findViewById(R.id.layer);
+        layer.setOnClickListener(myClickListener); //hideKeyboard 메소드
+
         nameBox = findViewById(R.id.nameBox);
         birthBox = findViewById(R.id.birthBox);
         genBox = findViewById(R.id.genBox);
         picBox = findViewById(R.id.picBox);
         noticeBox = findViewById(R.id.noticeBox);
+
+        nameText = findViewById(R.id.nameText);
+        birthText = findViewById(R.id.birthText);
+        jobText = findViewById(R.id.jobText);
+        bodyText = findViewById(R.id.bodyText);
+        etcText = findViewById(R.id.etcText);
+
+        genGroup = findViewById(R.id.rGroup);
+
         saveB = findViewById(R.id.saveB);
 
         //some word should be painted
@@ -74,11 +99,45 @@ public class Information extends AppCompatActivity {
         saveB.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v){
+                        checked = findViewById(genGroup.getCheckedRadioButtonId());
+
                         Intent intent = new Intent(getApplicationContext(), Profile.class);
-                        startActivity(intent);
+
+                        try{
+                            intent.putExtra("NAME_KEY", nameText.getText().toString());
+                            intent.putExtra("BIRTH_KEY", birthText.getText().toString());
+                            intent.putExtra("GEN_KEY", checked.getText().toString());
+                            intent.putExtra("JOB_KEY", jobText.getText().toString());
+                            intent.putExtra("BODY_KEY", bodyText.getText().toString());
+                            intent.putExtra("ETC_KEY", etcText.getText().toString());
+
+                            if(nameText.getText().length() == 0 || birthText.length() ==0)
+                                throw new Exception();
+
+                            startActivity(intent);
+                        }catch(Exception e){ //값 미입력 시 예외처리
+                            e.printStackTrace();
+                            Toast toast = Toast.makeText(getApplicationContext(), "올바른 값이 입력되지 않았습니다.", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
                     }
                 }
         );
     }
 
+    View.OnClickListener myClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            hideKeyboard();
+        }
+    };
+
+    //키보드 숨기기 메소드
+    private void hideKeyboard() {
+        imm.hideSoftInputFromWindow(nameText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(birthText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(jobText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(bodyText.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(etcText.getWindowToken(), 0);
+    }
 }

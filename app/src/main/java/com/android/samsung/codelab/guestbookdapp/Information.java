@@ -1,6 +1,7 @@
 package com.android.samsung.codelab.guestbookdapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ public class Information extends AppCompatActivity {
     TextView genBox;
     TextView picBox;
     TextView noticeBox;
+    Button saveB;
 
 
 
@@ -33,12 +36,12 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        nameBox = (TextView)findViewById(R.id.nameBox);
-        birthBox = (TextView)findViewById(R.id.birthBox);
-        genBox = (TextView)findViewById(R.id.genBox);
-        picBox = (TextView)findViewById(R.id.picBox);
-        noticeBox = (TextView)findViewById(R.id.noticeBox);
-
+        nameBox = findViewById(R.id.nameBox);
+        birthBox = findViewById(R.id.birthBox);
+        genBox = findViewById(R.id.genBox);
+        picBox = findViewById(R.id.picBox);
+        noticeBox = findViewById(R.id.noticeBox);
+        saveB = findViewById(R.id.saveB);
 
         //some word should be painted
         String Strs[] = new String[5];
@@ -67,6 +70,15 @@ public class Information extends AppCompatActivity {
         genBox.setText(spbStr[2]);
         picBox.setText(spbStr[3]);
         noticeBox.setText(spbStr[4]);
+
+        saveB.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent intent = new Intent(getApplicationContext(), Profile.class);
+                        startActivity(intent);
+                    }
+                }
+        );
     }
 
 }

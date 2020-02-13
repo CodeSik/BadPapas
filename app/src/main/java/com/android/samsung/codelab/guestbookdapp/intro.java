@@ -1,7 +1,10 @@
 package com.android.samsung.codelab.guestbookdapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -19,10 +22,28 @@ public class intro extends AppCompatActivity {
         setContentView(R.layout.intro);
 
         //버튼 객체 생성
-        button1 = (ImageButton) findViewById(R.id.btn_1);
-        button2 = (ImageButton) findViewById(R.id.btn_2);
-        button3 = (ImageButton) findViewById(R.id.btn_3);
-        button4 = (ImageButton) findViewById(R.id.btn_4);
+        button1 = findViewById(R.id.btn_1);
+        button2 = findViewById(R.id.btn_2);
+        button3 = findViewById(R.id.btn_3);
+        button4 = findViewById(R.id.btn_4);
+
+        button1.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent intent = new Intent(getApplicationContext(), Information.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+
+        button3.setOnClickListener(
+                new Button.OnClickListener(){
+                    public void onClick(View v){
+                        Intent intent = new Intent(getApplicationContext(), badguylistActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
 
     }
 

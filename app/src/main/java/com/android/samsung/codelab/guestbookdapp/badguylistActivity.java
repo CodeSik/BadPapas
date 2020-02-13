@@ -26,13 +26,13 @@ public class badguylistActivity extends AppCompatActivity {
 
        // 첫 번째 아이템 추가.
        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.a1),
-               "Box", "Account Box Black 36dp") ;
+               "김민수", "대구광역시 출신") ;
        // 두 번째 아이템 추가.
        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.a2),
-               "Circle", "Account Circle Black 36dp") ;
+               "서식건", "경기도 이천 출신") ;
        // 세 번째 아이템 추가.
        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.a3),
-               "Ind", "Assignment Ind Black 36dp") ;
+               "박현동", "서울특별시 출신") ;
 }
   /*  class MyListener implements View.OnClickListener {
 
